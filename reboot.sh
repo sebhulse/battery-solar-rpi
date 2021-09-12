@@ -33,4 +33,4 @@ echo "Connection to influxdb established"
 echo
 
 # start the infinite main.py script
-python3 /home/pi/battery-solar-rpi/py/main.py
+python3 /home/pi/battery-solar-rpi/main.py

@@ -109,35 +109,35 @@ def gather_readings():
                 if count == 10:
                     print("Solar Current overflow")
 
-            # calculate average values for each list of 10
-            try:
-                # battery
-                battery_power_av = round(sum(battery_power)/len(battery_power), 3)
-                battery_bus_voltage_av = round(sum(battery_bus_voltage)/len(battery_bus_voltage), 3)
-                battery_shunt_voltage_av = round(sum(battery_shunt_voltage)/len(battery_shunt_voltage), 4)
-            except ZeroDivisionError as e:
-                if count == 10:
-                    print("Battery Current overflow - Cant divide by zero")
-
-            try:
-                # solar
-                solar_power_av = round(sum(solar_power)/len(solar_power), 3)
-                solar_bus_voltage_av = round(sum(solar_bus_voltage)/len(solar_bus_voltage), 3)
-                solar_shunt_voltage_av = round(sum(solar_shunt_voltage)/len(solar_shunt_voltage), 4)
-            except ZeroDivisionError as e:
-                if count == 10:
-                    print("Solar Current overflow - Cant divide by zero")
-
-            # calculate the average bus voltage using both INA219 sensors
-            average_bus_voltage = round(((battery_bus_voltage_av + solar_bus_voltage_av) / 2), 3)
-
-            # calculate the third energy flow point - the system load
-            system_load = round((solar_power_av - battery_power_av), 3)
-
             # approximately first 1s (0.1*10) reserved for voltage sensor reads
             time.sleep(0.1)
 
-        # next 2s (of 3s) reserved for temp, humidity and internal system reads
+        # next 2s (of 3s) reserved for averaging calculations, temp and humidity reads, and internal system reads
+
+        # calculate average values for each list of 10
+        try:
+            # battery
+            battery_power_av = round(sum(battery_power)/len(battery_power), 3)
+            battery_bus_voltage_av = round(sum(battery_bus_voltage)/len(battery_bus_voltage), 3)
+            battery_shunt_voltage_av = round(sum(battery_shunt_voltage)/len(battery_shunt_voltage), 4)
+        except ZeroDivisionError as e:
+            if count == 10:
+                print("Battery Current overflow - Cant divide by zero")
+
+        try:
+            # solar
+            solar_power_av = round(sum(solar_power)/len(solar_power), 3)
+            solar_bus_voltage_av = round(sum(solar_bus_voltage)/len(solar_bus_voltage), 3)
+            solar_shunt_voltage_av = round(sum(solar_shunt_voltage)/len(solar_shunt_voltage), 4)
+        except ZeroDivisionError as e:
+            if count == 10:
+                print("Solar Current overflow - Cant divide by zero")
+
+        # calculate the average bus voltage using both INA219 sensors
+        average_bus_voltage = round(((battery_bus_voltage_av + solar_bus_voltage_av) / 2), 3)
+
+        # calculate the third energy flow point - the system load
+        system_load = round((solar_power_av - battery_power_av), 3)
 
         # temp and humidity reads
         humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
