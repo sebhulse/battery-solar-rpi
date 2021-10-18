@@ -13,6 +13,7 @@ If you're curious and want more information, please see my full in-depth four-pa
 
 [Part 3 Software](https://medium.com/codex/part-3-software-build-and-monitor-an-affordable-battery-solar-system-with-a-raspberry-pi-cbf95742b849)
 
+[Part 4 Deployment](https://medium.com/technology-hits/part-4-deployment-build-and-monitor-an-affordable-battery-solar-system-with-a-raspberry-pi-88afd1899dd4)
 
 If you find value in this series, please consider supporting me either through [Github Sponsors](https://github.com/sponsors/sebhulse), or by [becoming a Medium member](https://sebhulse.medium.com/membership) through my referral link. I'll get a portion of your membership fees (at no extra cost to you) and you'll get access to the entire Medium platform and every story from the talented writers on there!
 
